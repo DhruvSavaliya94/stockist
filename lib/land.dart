@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:stockist/products.dart';
+import 'package:stockist/classes.dart';
+import 'package:stockist/modules/categories.dart';
+import 'package:stockist/modules/customers.dart';
+import 'package:stockist/modules/suppliers.dart';
+import 'file:///C:/Users/dhruv/AndroidStudioProjects/stockist/lib/modules/products.dart';
 import 'package:stockist/reusablecard.dart';
 import 'package:stockist/iconcontent.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'modules/customers.dart';
+import 'modules/purchase.dart';
+import 'modules/sells.dart';
 
 class LandingPage extends StatefulWidget {
   @override
   _LandingPageState createState() => _LandingPageState();
 }
 
-
-class _LandingPageState extends State<LandingPage>{
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +39,7 @@ class _LandingPageState extends State<LandingPage>{
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context){
+                            builder: (context) {
                               return Products();
                             },
                           ),
@@ -47,7 +54,16 @@ class _LandingPageState extends State<LandingPage>{
                   ),
                   Expanded(
                     child: ReusableCard(
-                      onPress: () {},
+                      onPress: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Categories();
+                            },
+                          ),
+                        );
+                      },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.venus,
@@ -64,7 +80,14 @@ class _LandingPageState extends State<LandingPage>{
                   Expanded(
                     child: ReusableCard(
                       onPress: () {
-                        print("tap");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Customers();
+                            },
+                          ),
+                        );
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
@@ -75,7 +98,16 @@ class _LandingPageState extends State<LandingPage>{
                   ),
                   Expanded(
                     child: ReusableCard(
-                      onPress: () {},
+                      onPress: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Suppliers();
+                            },
+                          ),
+                        );
+                      },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.teamspeak,
@@ -92,7 +124,14 @@ class _LandingPageState extends State<LandingPage>{
                   Expanded(
                     child: ReusableCard(
                       onPress: () {
-                        print("tap");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Sells();
+                            },
+                          ),
+                        );
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
@@ -103,7 +142,16 @@ class _LandingPageState extends State<LandingPage>{
                   ),
                   Expanded(
                     child: ReusableCard(
-                      onPress: () {},
+                      onPress: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Purchases();
+                            },
+                          ),
+                        );
+                      },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.accusoft,
@@ -130,19 +178,15 @@ class _LandingPageState extends State<LandingPage>{
                     ),
                   ),
                   Expanded(
-                    child: RaisedButton(
-                      color: Colors.amberAccent,
-                      child: Text("Tap me"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context){
-                              return Products();
-                            },
-                          ),
-                        );
+                    child: ReusableCard(
+                      onPress: () {
+                        print("Prediction");
                       },
+                      colour: Colors.deepOrange,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.grinAlt,
+                        label: 'Prediction',
+                      ),
                     ),
                   ),
                 ],
