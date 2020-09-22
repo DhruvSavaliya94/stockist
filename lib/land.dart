@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stockist/classes.dart';
 import 'package:stockist/modules/categories.dart';
 import 'package:stockist/modules/customers.dart';
 import 'package:stockist/modules/suppliers.dart';
-import 'file:///C:/Users/dhruv/AndroidStudioProjects/stockist/lib/modules/products.dart';
+import 'package:stockist/modules/products.dart';
 import 'package:stockist/reusablecard.dart';
 import 'package:stockist/iconcontent.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
