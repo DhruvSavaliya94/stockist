@@ -85,7 +85,7 @@ class _AddSupplierState extends State<AddSupplier> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                      icon: const Icon(Icons.email),
+                      icon: const Icon(Icons.edit_location),
                       hintText: 'Enter your address',
                       labelText: 'Address'),
                   keyboardType: TextInputType.emailAddress,

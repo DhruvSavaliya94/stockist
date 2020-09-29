@@ -12,6 +12,7 @@ class AddSell extends StatefulWidget {
 class _AddSellState extends State<AddSell> {
   var now;
   var formatter;
+  String today;
   final _formKey = GlobalKey<FormState>();
   FormSell user = new FormSell();
   List<DropdownMenuItem<String>> _dropDownMenuItemsC;
@@ -57,7 +58,12 @@ class _AddSellState extends State<AddSell> {
           .toList();
     });
   }
-
+  String getdate(){
+    now = new DateTime.now();
+    formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
   Future<bool> _AddSell() async {
     Map<String, dynamic> data = {
       'custid': user.custid,
@@ -66,10 +72,6 @@ class _AddSellState extends State<AddSell> {
       'prtrate': user.prtrate,
       'sdate': user.sdate
     };
-    String formattedDate = formatter.format(now);
-    print(formattedDate);
-    user.sdate=formattedDate;
-    print(user.sdate);
     String body = json.encode(data);
     print(body);
     var dio = Dio();
@@ -91,8 +93,7 @@ class _AddSellState extends State<AddSell> {
   @override
   void initState() {
     super.initState();
-    now = new DateTime.now();
-    formatter = new DateFormat('yyyy-MM-dd');
+    today=getdate();
     _getItemC();
     _getItemP();
   }
@@ -103,7 +104,7 @@ class _AddSellState extends State<AddSell> {
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("New Product"),
+          title: Text("New sales"),
           backgroundColor: Colors.orangeAccent,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -122,7 +123,7 @@ class _AddSellState extends State<AddSell> {
               children: <Widget>[
                 Center(
                   child: Text(
-                    "Create Product",
+                    "Create Sales",
                     style: TextStyle(fontSize: 25, color: Colors.black54),
                   ),
                 ),
@@ -162,8 +163,8 @@ class _AddSellState extends State<AddSell> {
                   keyboardType: TextInputType.number,
                   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
                   validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter valid phone number';
+                    if (value.isEmpty || int.parse(value)<=0) {
+                      return 'Please enter valid quantity';
                     }
                     return null;
                   },
@@ -175,12 +176,12 @@ class _AddSellState extends State<AddSell> {
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.phone),
                       hintText: 'Enter Cost Price',
-                      labelText: 'Phone'),
+                      labelText: 'Selling Price'),
                   keyboardType: TextInputType.number,
                   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
                   validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter valid phone number';
+                    if (value.isEmpty || int.parse(value)<=0) {
+                      return 'Please enter valid sellingprice';
                     }
                     return null;
                   },
@@ -193,6 +194,9 @@ class _AddSellState extends State<AddSell> {
                   child: RaisedButton(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
+                        setState(() {
+                          user.sdate=today;
+                        });
                         print("Process data");
                         _formKey.currentState.save();
                         _AddSell();

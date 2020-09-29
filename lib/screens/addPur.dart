@@ -12,6 +12,7 @@ class AddPurchase extends StatefulWidget {
 class _AddPurchaseState extends State<AddPurchase> {
   var now;
   var formatter;
+  String today;
   final _formKey = GlobalKey<FormState>();
   FormPurch user = new FormPurch();
   List<DropdownMenuItem<String>> _dropDownMenuItemsS;
@@ -57,7 +58,12 @@ class _AddPurchaseState extends State<AddPurchase> {
           .toList();
     });
   }
-
+  String getdate(){
+    now = new DateTime.now();
+    formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
   Future<bool> _AddPurch() async {
     Map<String, dynamic> data = {
       'prcpid': user.prcpid,
@@ -66,10 +72,6 @@ class _AddPurchaseState extends State<AddPurchase> {
       'prtrate': user.prtrate,
       'sdate': user.sdate
     };
-    String formattedDate = formatter.format(now);
-    print(formattedDate);
-    user.sdate=formattedDate;
-    print(user.sdate);
     String body = json.encode(data);
     print(body);
     var dio = Dio();
@@ -91,8 +93,7 @@ class _AddPurchaseState extends State<AddPurchase> {
   @override
   void initState() {
     super.initState();
-    now = new DateTime.now();
-    formatter = new DateFormat('yyyy-MM-dd');
+    today=getdate();
     _getItemS();
     _getItemP();
   }
@@ -103,7 +104,7 @@ class _AddPurchaseState extends State<AddPurchase> {
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("New Product"),
+          title: Text("New Purchase"),
           backgroundColor: Colors.orangeAccent,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -127,7 +128,7 @@ class _AddPurchaseState extends State<AddPurchase> {
                   ),
                 ),
                 ListTile(
-                  title: Text('Customer'),
+                  title: Text('Supplier'),
                   trailing: DropdownButton(
                     value: _selectedItemSupplier,
                     hint: Text('Choose'),
@@ -162,8 +163,8 @@ class _AddPurchaseState extends State<AddPurchase> {
                   keyboardType: TextInputType.number,
                   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
                   validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter valid phone number';
+                    if (value.isEmpty || int.parse(value)<=0) {
+                      return 'Please enter valid quantity';
                     }
                     return null;
                   },
@@ -175,12 +176,12 @@ class _AddPurchaseState extends State<AddPurchase> {
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.phone),
                       hintText: 'Enter Cost Price',
-                      labelText: 'Phone'),
+                      labelText: 'Costprise'),
                   keyboardType: TextInputType.number,
                   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
                   validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter valid phone number';
+                    if (value.isEmpty || int.parse(value)<=0) {
+                      return 'Please enter valid costprice';
                     }
                     return null;
                   },
@@ -193,6 +194,9 @@ class _AddPurchaseState extends State<AddPurchase> {
                   child: RaisedButton(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
+                        setState(() {
+                          user.sdate=today;
+                        });
                         print("Process data");
                         _formKey.currentState.save();
                         _AddPurch();

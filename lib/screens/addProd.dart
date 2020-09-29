@@ -104,7 +104,7 @@ class _AddProductState extends State<AddProduct> {
                 TextFormField(
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.person),
-                      hintText: 'Enter your name',
+                      hintText: 'Enter product name',
                       labelText: 'Name'),
                   inputFormatters: [new LengthLimitingTextInputFormatter(20)],
                   validator: (value) {
@@ -118,7 +118,7 @@ class _AddProductState extends State<AddProduct> {
                   },
                 ),
                 ListTile(
-                  title: Text('DropDownButton with hint:'),
+                  title: Text('Category:'),
                   trailing: DropdownButton(
                     value: _selectedItemCategory,
                     hint: Text('Choose'),
@@ -131,33 +131,33 @@ class _AddProductState extends State<AddProduct> {
                     items: _dropDownMenuItems,
                   ),
                 ),
+                // TextFormField(
+                //   decoration: const InputDecoration(
+                //       icon: const Icon(Icons.add_shopping_cart),
+                //       hintText: 'Enter Quantity',
+                //       labelText: 'Quantity'),
+                //   keyboardType: TextInputType.number,
+                //   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
+                //   validator: (value) {
+                //     if (value.isEmpty) {
+                //       return 'Please enter valid number';
+                //     }
+                //     return null;
+                //   },
+                //   onSaved: (value) {
+                //     user.prquantity = int.parse(value);
+                //   },
+                // ),
                 TextFormField(
                   decoration: const InputDecoration(
-                      icon: const Icon(Icons.phone),
-                      hintText: 'Enter Quantity',
-                      labelText: 'Quantity'),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [new LengthLimitingTextInputFormatter(10)],
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter valid phone number';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    user.prquantity = int.parse(value);
-                  },
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                      icon: const Icon(Icons.phone),
+                      icon: const Icon(Icons.attach_money),
                       hintText: 'Enter Cost Price',
-                      labelText: 'Phone'),
+                      labelText: 'Costprice:'),
                   keyboardType: TextInputType.number,
                   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter valid phone number';
+                      return 'Please enter valid number';
                     }
                     return null;
                   },
@@ -167,14 +167,14 @@ class _AddProductState extends State<AddProduct> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                      icon: const Icon(Icons.phone),
+                      icon: const Icon(Icons.attach_money),
                       hintText: 'Enter Selling Price',
-                      labelText: 'Phone'),
+                      labelText: 'Sellingprice'),
                   keyboardType: TextInputType.number,
                   inputFormatters: [new LengthLimitingTextInputFormatter(10)],
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter valid phone number';
+                      return 'Please enter valid number';
                     }
                     return null;
                   },
@@ -187,6 +187,9 @@ class _AddProductState extends State<AddProduct> {
                   child: RaisedButton(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
+                        setState(() {
+                          user.prquantity=0;
+                        });
                         print("Process data");
                         _formKey.currentState.save();
                         _AddProduct();

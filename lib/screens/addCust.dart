@@ -87,7 +87,7 @@ class _AddCustomerState extends State<AddCustomer> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                      icon: const Icon(Icons.email),
+                      icon: const Icon(Icons.edit_location),
                       hintText: 'Enter your address',
                       labelText: 'Address'),
                   keyboardType: TextInputType.emailAddress,
