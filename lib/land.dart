@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stockist/modules/categories.dart';
 import 'package:stockist/modules/customers.dart';
+import 'package:stockist/modules/prediction.dart';
 import 'package:stockist/modules/suppliers.dart';
 import 'package:stockist/modules/products.dart';
 import 'package:stockist/reusablecard.dart';
@@ -9,6 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'modules/customers.dart';
 import 'modules/purchase.dart';
+import 'modules/report.dart';
 import 'modules/sells.dart';
 
 class LandingPage extends StatefulWidget {
@@ -65,7 +68,7 @@ class _LandingPageState extends State<LandingPage> {
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
+                        icon: CupertinoIcons.tag,
                         label: 'Products Category',
                       ),
                     ),
@@ -167,7 +170,14 @@ class _LandingPageState extends State<LandingPage> {
                   Expanded(
                     child: ReusableCard(
                       onPress: () {
-                        print("tap");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ReportScreen();
+                            },
+                          ),
+                        );
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
@@ -179,7 +189,14 @@ class _LandingPageState extends State<LandingPage> {
                   Expanded(
                     child: ReusableCard(
                       onPress: () {
-                        print("Prediction");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return PredictionScreen();
+                            },
+                          ),
+                        );
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(

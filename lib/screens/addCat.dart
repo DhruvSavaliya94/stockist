@@ -62,7 +62,7 @@ class _AddCategoryState extends State<AddCategory> {
                 TextFormField(
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.person),
-                      hintText: 'Enter your name',
+                      hintText: 'Enter category name',
                       labelText: 'Name'),
                   inputFormatters: [new LengthLimitingTextInputFormatter(20)],
                   validator: (value) {
