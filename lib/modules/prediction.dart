@@ -9,7 +9,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("Under development!"),
+        child: Text("Under development!",
+        style: TextStyle(
+          fontSize: 25,
+        ),),
       ),
     );
   }

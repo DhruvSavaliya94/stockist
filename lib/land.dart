@@ -137,7 +137,7 @@ class _LandingPageState extends State<LandingPage> {
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
-                        icon: FontAwesomeIcons.amazon,
+                        icon: FontAwesomeIcons.arrowCircleUp,
                         label: 'Sell',
                       ),
                     ),
@@ -156,7 +156,7 @@ class _LandingPageState extends State<LandingPage> {
                       },
                       colour: Colors.deepOrange,
                       cardChild: IconContent(
-                        icon: FontAwesomeIcons.accusoft,
+                        icon: FontAwesomeIcons.arrowCircleDown,
                         label: 'Buy',
                       ),
                     ),
